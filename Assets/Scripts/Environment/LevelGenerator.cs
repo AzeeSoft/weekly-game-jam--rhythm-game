@@ -39,12 +39,6 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
         AlignContainers();
     }
 
-    List<float> GetBeats()
-    {
-        var lines = beatsData.text.Split('\n');
-        return lines.Where(s => s.Contains(',')).Select(s => float.Parse(s.Split(',')[0])).ToList();
-    }
-
     void AlignContainers()
     {
         var camBounds = camera.GetCameraBounds();
@@ -68,7 +62,7 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     {
         ClearLevel();
 
-        var beats = GetBeats();
+        var beats = GameTools.GetOnsets(beatsData.text).Select((onsetInfo) => onsetInfo.time).ToList();
 
         Transform curContainer = rightContainer;
         RunnableModule lastRunnableModule = null;
