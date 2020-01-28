@@ -6,14 +6,13 @@ public class PlayerMovementController : MonoBehaviour
 {
     private AudioSource levelMusicSource => LevelManager.Instance.levelMusicSource;
     private float playerSpeed => playerModel.playerSpeed;
-
-    public bool autoSwitch = false;
+    
     public float lerpSpeed = 1f;
     public float reachDistance = 0.2f;
     public Transform feetRef;
 
     private PlayerModel playerModel;
-    private RunnableModule curRunnableModule;
+    public RunnableModule curRunnableModule { get; private set; }
 
     void Awake()
     {
@@ -37,12 +36,10 @@ public class PlayerMovementController : MonoBehaviour
 
     void CheckAndUpdateRunnableModule()
     {
-        if (autoSwitch)
+        while (curRunnableModule.next && levelMusicSource.time > curRunnableModule.moveToNextTime)
         {
-            while (curRunnableModule.next && levelMusicSource.time > curRunnableModule.moveToNextTime)
-            {
-                curRunnableModule = curRunnableModule.next;
-            }
+            curRunnableModule.OnPlayerLeft();
+            curRunnableModule = curRunnableModule.next;
         }
     }
 

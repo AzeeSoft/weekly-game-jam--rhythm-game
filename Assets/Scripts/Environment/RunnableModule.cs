@@ -10,6 +10,8 @@ public class RunnableModule : MonoBehaviour
     [ReadOnly] public float runXLocalPos;
     [ReadOnly] public float moveToNextTime;
 
+    [ReadOnly] public bool jumpAttempted = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +20,13 @@ public class RunnableModule : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void OnPlayerLeft()
+    {
+        if (!jumpAttempted)
+        {
+            PlayerModel.Instance.JumpMissed();
+        }
     }
 }
