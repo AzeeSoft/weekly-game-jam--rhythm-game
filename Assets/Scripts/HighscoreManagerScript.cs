@@ -37,7 +37,7 @@ public class HighScoreGroup
     }
 }
 
-public class HighscoreManagerScript : MonoBehaviour
+public class HighscoreManagerScript : SingletonMonoBehaviour<HighscoreManagerScript>
 {
     public bool clearList = false;
 
@@ -60,8 +60,10 @@ public class HighscoreManagerScript : MonoBehaviour
         public List<HighScoreGroup> groups;
     }
 
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
+
         if (clearList)
         {
             PlayerPrefs.DeleteAll();
