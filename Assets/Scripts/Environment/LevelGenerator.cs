@@ -86,7 +86,7 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
                 continue;
             }
 
-            WallModule wallModule;
+            WallModule wallModule = null;
             if (Application.isPlaying)
             {
                 wallModule = Instantiate(wallModulePrefab, curContainer).GetComponent<WallModule>();
