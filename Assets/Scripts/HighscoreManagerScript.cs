@@ -6,12 +6,12 @@ using UnityEngine;
 [Serializable]
 public class HighScoreData : IComparable<HighScoreData>
 {
-    public float time;
-    public long date;
+    public float accuracy;
+    public string name = "none";
 
     public float getScore()
     {
-        return time;
+        return accuracy;
     }
 
     public int CompareTo(HighScoreData value)
@@ -21,7 +21,7 @@ public class HighScoreData : IComparable<HighScoreData>
             return 1;
         }
 
-        return Mathf.RoundToInt(time - value.time);
+        return Mathf.RoundToInt(accuracy - value.accuracy);
     }
 }
 
@@ -49,7 +49,7 @@ public class HighscoreManagerScript : MonoBehaviour
     public OrderEnum sortOrder = OrderEnum.Decending;
 
     public int totalPositions = 5;
-    public string highscoreKey = "";
+    public string highscoreKey = "highscore";
 
     public string[] HighScoreGroupName;
     private List<HighScoreGroup> highScoreGroups;
@@ -125,33 +125,33 @@ public class HighscoreManagerScript : MonoBehaviour
             return false;
         }
 
-        if(scores[totalPositions - 1].time == 0.0f)
+        if(scores[totalPositions - 1].accuracy == 0.0f)
         {
             return true;
         }
 
         if(sortOrder == OrderEnum.Decending)
         {
-            return (value >= scores[totalPositions - 1].time);
+            return (value >= scores[totalPositions - 1].accuracy);
         }
 
-        return (value <= scores[totalPositions - 1].time);
+        return (value <= scores[totalPositions - 1].accuracy);
     }
 
-    public HighScoreData AddNewHighScore(float value, string id)
+    public HighScoreData AddNewHighScore(float value, string name, string id)
     {
         List<HighScoreData> scores = GetHighScores(id);
 
         HighScoreData data = new HighScoreData();
 
-        data.time = value;
-        data.date = DateTime.Now.ToFileTime();
+        data.accuracy = value;
+        data.name = name;
 
         for(int i = 0; i < totalPositions; ++i)
         {
             if(sortOrder == OrderEnum.Ascending)
             {
-                if(scores[i].time == 0.0f || value <= scores[i].time)
+                if(scores[i].accuracy == 0.0f || value <= scores[i].accuracy)
                 {
                     scores.Insert(i, data);
                     scores.RemoveAt(totalPositions);
@@ -161,7 +161,7 @@ public class HighscoreManagerScript : MonoBehaviour
             }
             else
             {
-                if(scores[i].time == 0.0f || value >= scores[i].time)
+                if(scores[i].accuracy == 0.0f || value >= scores[i].accuracy)
                 {
                     scores.Insert(i, data);
                     scores.RemoveAt(totalPositions);
