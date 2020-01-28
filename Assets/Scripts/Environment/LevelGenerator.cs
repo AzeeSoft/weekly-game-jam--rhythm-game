@@ -39,6 +39,7 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     void Update()
     {
         AlignContainers();
+        playerModel.UpdateGlobalShaderPlayerPositionProp();
     }
 
     void AlignContainers()

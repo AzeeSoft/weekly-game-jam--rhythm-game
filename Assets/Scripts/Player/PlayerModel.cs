@@ -45,38 +45,8 @@ public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
     // Update is called once per frame
     void Update()
     {
-        var playerInput = GetPlayerInput();
-
-        if (playerInput.isJumping)
-        {
-            if (!playerMovementController.curRunnableModule.jumpAttempted)
-            {
-                var jumpTimeOffset = playerMovementController.curRunnableModule.moveToNextTime - levelMusicSource.time;
-                jumpTimeOffset = Mathf.Max(0, jumpTimeOffset);
-
-                print("Jump Time Offset: " + jumpTimeOffset);
-
-                if (jumpTimeOffset <= perfectTimeThreshold)
-                {
-                    JumpAttempted(maxScore);
-                }
-                else if (jumpTimeOffset <= maxAcceptableTimeThreshold)
-                {
-                    JumpAttempted(HelperUtilities.Remap(jumpTimeOffset, perfectTimeThreshold,
-                        maxAcceptableTimeThreshold, maxScore, maxAcceptableTimeScore));
-                }
-                else
-                {
-                    InvalidJumpAttempted();
-                }
-
-                playerMovementController.curRunnableModule.jumpAttempted = true;
-            }
-            else
-            {
-                InvalidJumpAttempted();
-            }
-        }
+        UpdateGlobalShaderPlayerPositionProp();
+        CheckForPlayerJump();
     }
 
     public PlayerInput GetPlayerInput()
@@ -104,5 +74,64 @@ public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
     {
         totalScore += score;
         scoresCount++;
+    }
+
+    void CheckForPlayerJump()
+    {
+        var playerInput = GetPlayerInput();
+
+        if (playerInput.isJumping)
+        {
+            if (!playerMovementController.curRunnableModule.jumpAttempted)
+            {
+                bool jumpIsValid = false;
+                if (transform.position.x > playerMovementController.curRunnableModule.runXPos && playerInput.jumpRight)
+                {
+                    jumpIsValid = true;
+                }
+                else if (transform.position.x > playerMovementController.curRunnableModule.runXPos &&
+                         playerInput.jumpLeft)
+                {
+                    jumpIsValid = true;
+                }
+
+                if (jumpIsValid)
+                {
+                    var jumpTimeOffset = playerMovementController.curRunnableModule.moveToNextTime - levelMusicSource.time;
+                    jumpTimeOffset = Mathf.Max(0, jumpTimeOffset);
+
+                    print("Jump Time Offset: " + jumpTimeOffset);
+
+                    if (jumpTimeOffset <= perfectTimeThreshold)
+                    {
+                        JumpAttempted(maxScore);
+                    }
+                    else if (jumpTimeOffset <= maxAcceptableTimeThreshold)
+                    {
+                        JumpAttempted(HelperUtilities.Remap(jumpTimeOffset, perfectTimeThreshold,
+                            maxAcceptableTimeThreshold, maxScore, maxAcceptableTimeScore));
+                    }
+                    else
+                    {
+                        InvalidJumpAttempted();
+                    }
+
+                    playerMovementController.curRunnableModule.jumpAttempted = true;
+                }
+                else
+                {
+                    InvalidJumpAttempted();
+                }
+            }
+            else
+            {
+                InvalidJumpAttempted();
+            }
+        }
+    }
+
+    public void UpdateGlobalShaderPlayerPositionProp()
+    {
+        Shader.SetGlobalVector("_playerPosition", transform.position);
     }
 }
