@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9150d7e95bbb6664f9003b200188f544, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -46,16 +46,20 @@ Material:
     - Boolean_E8CEE5F2: 0
     - Boolean_EEEB142F: 1
     - Vector1_87618C81: 2
+    - Vector1_B255FA47: 0
     - Vector1_DA783A9F: 0.75
     - _disintegrationHeight: 2
     - _disintegrationOffset: 2
     - _disintegrationStartOffset: 1.5
+    - _edgeWidth: 1
     m_Colors:
     - Color_3C122635: {r: 0, g: 0, b: 0, a: 0}
+    - Color_4B3737CE: {r: 0, g: 0, b: 0, a: 0}
     - Vector3_D77CEB0D: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainTex: {r: 0.75471693, g: 0.75471693, b: 0.75471693, a: 1}
     - _disintegrationColor: {r: 0.1981132, g: 0.064825006, b: 0.032707363, a: 1}
+    - _edgeColor: {r: 0, g: 0.033018887, b: 0.033018887, a: 1}
     - _localScale: {r: 1, g: 1, b: 1, a: 0}
     - _playerPosition: {r: 0, g: 0, b: 0, a: 0}
