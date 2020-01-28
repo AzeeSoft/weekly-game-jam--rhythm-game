@@ -19,8 +19,10 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     public Transform leftContainer;
     public Transform rightContainer;
 
-    [Header("Asset References")] public TextAsset beatsData;
+    [Header("Asset References")] public TextAsset onsetData;
     public GameObject wallModulePrefab;
+
+    [Header("Config")] public float minOnsetInterval;
 
     [SerializeField] [Button("Generate Level", "GenerateLevel")]
     private bool btn_GenerateLevel;
@@ -37,12 +39,7 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     void Update()
     {
         AlignContainers();
-    }
-
-    List<float> GetBeats()
-    {
-        var lines = beatsData.text.Split('\n');
-        return lines.Where(s => s.Contains(',')).Select(s => float.Parse(s.Split(',')[0])).ToList();
+        playerModel.UpdateGlobalShaderPlayerPositionProp();
     }
 
     void AlignContainers()
@@ -68,19 +65,25 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     {
         ClearLevel();
 
-        var beats = GetBeats();
+        var beats = GameTools.GetOnsets(onsetData.text).Select((onsetInfo) => onsetInfo.time).ToList();
 
         Transform curContainer = rightContainer;
         RunnableModule lastRunnableModule = null;
 
+        int lastBeatSpawned = -1;
         for (int i = 0; i < beats.Count; i++)
         {
             float spawnYPos = 0;
             float beatYPos = beats[i] * yMultiplier;
 
-            if (i > 0)
+            if (lastBeatSpawned >= 0)
             {
-                spawnYPos = beats[i - 1] * yMultiplier;
+                spawnYPos = beats[lastBeatSpawned] * yMultiplier;
+            }
+
+            if (beatYPos - spawnYPos < (minOnsetInterval * yMultiplier))
+            {
+                continue;
             }
 
             WallModule wallModule;
@@ -124,6 +127,7 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
                 lastRunnableModule.next = wallModule;
             }
             lastRunnableModule = wallModule;
+            lastBeatSpawned = i;
         }
     }
 

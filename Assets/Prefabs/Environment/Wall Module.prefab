@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a3da1f9b3fa6f1a4f853a9c18a1e151f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,3 +154,5 @@ MonoBehaviour:
   next: {fileID: 0}
   runXLocalPos: 0
   moveToNextTime: 0
+  jumpAttempted: 0
+  wallRenderer: {fileID: 334083818715425215}
