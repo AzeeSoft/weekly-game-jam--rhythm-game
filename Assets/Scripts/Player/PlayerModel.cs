@@ -12,7 +12,7 @@ public class PlayerInput
 
 public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
 {
-    public float accuracy => totalScore / scoresCount;
+    public float accuracy => scoresCount > 0 ? totalScore / scoresCount : 0;
 
     private AudioSource levelMusicSource => LevelManager.Instance.levelMusicSource;
     public PlayerMovementController playerMovementController { get; private set; }

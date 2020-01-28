@@ -22,6 +22,6 @@ public class HUD : MonoBehaviour
     void UpdateAccuracy()
     {
         var accuracyRemapped = HelperUtilities.Remap(PlayerModel.Instance.accuracy, 0, PlayerModel.maxScore, 0, 100f);
-        accuracyText.text = $"Accuracy: {accuracyRemapped:###.##}%";
+        accuracyText.text = $"Accuracy: {accuracyRemapped:##0.##}%";
     }
 }
