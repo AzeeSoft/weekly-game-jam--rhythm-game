@@ -17,16 +17,19 @@ public class SingletonMonoBehaviour<T>: MonoBehaviour where T: SingletonMonoBeha
 
     protected void Awake()
     {
-        if (Instance != null)
+        if (Application.isPlaying)
         {
-            DestroyImmediate(gameObject);
-            return;
+            if (Instance != null)
+            {
+                DestroyImmediate(gameObject);
+                return;
+            }
+            else
+            {
+                Instance = this as T;
+                CallOnSingletonReadyListeners();
+            }
         }
-        else
-        {
-            Instance = this as T;
-            CallOnSingletonReadyListeners();
-        } 
     }
 
     private static void CallOnSingletonReadyListeners()

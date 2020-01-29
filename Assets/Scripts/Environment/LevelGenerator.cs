@@ -43,20 +43,23 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
 
     void AlignContainers()
     {
-        var camBounds = camera.GetCameraBounds();
-
-        if (leftContainer)
+        if (camera)
         {
-            var newPos = leftContainer.position;
-            newPos.x = camBounds.topLeft.x;
-            leftContainer.position = newPos;
-        }
+            var camBounds = camera.GetCameraBounds();
 
-        if (rightContainer)
-        {
-            var newPos = rightContainer.position;
-            newPos.x = camBounds.bottomRight.x;
-            rightContainer.position = newPos;
+            if (leftContainer)
+            {
+                var newPos = leftContainer.position;
+                newPos.x = camBounds.topLeft.x;
+                leftContainer.position = newPos;
+            }
+
+            if (rightContainer)
+            {
+                var newPos = rightContainer.position;
+                newPos.x = camBounds.bottomRight.x;
+                rightContainer.position = newPos;
+            }
         }
     }
 
