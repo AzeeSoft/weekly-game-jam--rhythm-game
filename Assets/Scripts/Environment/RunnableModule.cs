@@ -12,6 +12,12 @@ public class RunnableModule : MonoBehaviour
 
     [ReadOnly] public bool jumpAttempted = false;
 
+    [ReadOnly] public bool autoRun = false;
+    [ReadOnly] public bool playMusicOnLeave = false;
+    [ReadOnly] public bool endLevelOnLeave = false;
+
+    private bool playerLeft = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +30,30 @@ public class RunnableModule : MonoBehaviour
 
     public void OnPlayerLeft()
     {
-        if (!jumpAttempted)
+        if (!playerLeft)
         {
-            Fail();
-            PlayerModel.Instance.JumpMissed();
+            if (autoRun)
+            {
+                Perfect();
+            }
+
+            if (!autoRun && !jumpAttempted)
+            {
+                Fail();
+                PlayerModel.Instance.JumpMissed();
+            }
+
+            if (playMusicOnLeave)
+            {
+                LevelManager.Instance.levelMusicSource.Play();
+            }
+
+            if (endLevelOnLeave)
+            {
+                // TODO: End Level Sequence
+            }
+
+            playerLeft = true;
         }
     }
 

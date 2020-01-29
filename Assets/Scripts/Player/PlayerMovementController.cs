@@ -42,9 +42,18 @@ public class PlayerMovementController : MonoBehaviour
         var adjustedXPos = curRunnableModule.runXPos + (transform.position.x > curRunnableModule.runXPos ? 1 : -1) *
                            Mathf.Abs(transform.position.x - feetRef.position.x);
 
-        var targetPos =
-            new Vector3(Mathf.Lerp(transform.position.x, adjustedXPos, Time.deltaTime * lerpSpeed),
+        Vector3 targetPos;
+        if (curRunnableModule.autoRun)
+        {
+            targetPos = new Vector3(Mathf.Lerp(transform.position.x, adjustedXPos, Time.deltaTime * lerpSpeed),
+                transform.position.y + Time.deltaTime * playerSpeed);
+        }
+        else
+        {
+            targetPos = new Vector3(Mathf.Lerp(transform.position.x, adjustedXPos, Time.deltaTime * lerpSpeed),
                 levelMusicSource.time * playerSpeed);
+        }
+
         transform.position = targetPos;
 
         //print(adjustedXPos - transform.position.x);
@@ -61,9 +70,9 @@ public class PlayerMovementController : MonoBehaviour
 
     public void JumpToNextRunnableModule()
     {
+        curRunnableModule.OnPlayerLeft();
         if (curRunnableModule.next)
         {
-            curRunnableModule.OnPlayerLeft();
             curRunnableModule = curRunnableModule.next;
             curRunnableModule.Ready();
         }
@@ -71,14 +80,33 @@ public class PlayerMovementController : MonoBehaviour
 
     void CheckAndUpdateRunnableModule()
     {
-        while (curRunnableModule.next && levelMusicSource.time > (curRunnableModule.moveToNextTime + playerModel.maxAcceptableTimeThreshold))
+        bool check = curRunnableModule.next;
+        while (check)
         {
-            JumpToNextRunnableModule();
+            check = false;
+            if (curRunnableModule.autoRun && (transform.position.y >= curRunnableModule.moveToNextTime * playerSpeed))
+            {
+                JumpToNextRunnableModule();
+                check = true;
+            }
+            else if (levelMusicSource.time >
+                     (curRunnableModule.moveToNextTime + playerModel.maxAcceptableTimeThreshold))
+            {
+                JumpToNextRunnableModule();
+                check = true;
+            }
+
+            check &= curRunnableModule.next;
         }
     }
 
     void CheckForPlayerJump()
     {
+        if (curRunnableModule.autoRun)
+        {
+            return;
+        }
+
         var playerInput = playerModel.GetPlayerInput();
 
         if (playerInput.isJumping)
@@ -97,7 +125,7 @@ public class PlayerMovementController : MonoBehaviour
             if (jumpIsValid)
             {
                 var jumpTimeOffset = Mathf.Abs(curRunnableModule.moveToNextTime - levelMusicSource.time);
-                
+
                 print("Jump Time Offset: " + jumpTimeOffset);
 
                 if (jumpTimeOffset <= playerModel.perfectTimeThreshold)
