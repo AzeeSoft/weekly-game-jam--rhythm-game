@@ -66,7 +66,7 @@ Material:
     - _MainTex: {r: 0.75471693, g: 0.75471693, b: 0.75471693, a: 1}
     - _disintegrationColor: {r: 0.1981132, g: 0.064825006, b: 0.032707363, a: 1}
     - _edgeColor: {r: 0, g: 0.033018887, b: 0.033018887, a: 1}
-    - _localScale: {r: -2, g: 4.7, b: 1, a: 0}
+    - _localScale: {r: -2, g: 4.6, b: 1, a: 0}
     - _perfectAreaColor: {r: 1, g: 1, b: 1, a: 1}
     - _playerPosition: {r: 0, g: 0, b: 0, a: 0}
     - _topPosition: {r: 0, g: 1.27, b: 0, a: 0}

@@ -20,10 +20,9 @@ public class WallShaderHelper : MonoBehaviour
     {
         var material = Application.isPlaying ? wallRenderer.material : wallRenderer.sharedMaterial;
 
-        material.SetVector("_localScale", transform.localScale);
-
         if (Application.isPlaying || currentlyEditing)
         {
+            material.SetVector("_localScale", transform.localScale);
             material.SetVector("_topPosition", wallRenderer.transform.TransformPoint(new Vector3(0, 0.5f, 0)));
         }
     }
