@@ -6,7 +6,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     private AudioSource levelMusicSource => LevelManager.Instance.levelMusicSource;
     private float playerSpeed => playerModel.playerSpeed;
-    
+
     public float lerpSpeed = 1f;
     public float reachDistance = 0.2f;
     public Transform feetRef;
@@ -23,6 +23,8 @@ public class PlayerMovementController : MonoBehaviour
     void Start()
     {
         curRunnableModule = LevelManager.Instance.allRunnableModules[0];
+        curRunnableModule.Ready();
+
         print(curRunnableModule);
         print(curRunnableModule.gameObject);
     }
@@ -31,16 +33,8 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         CheckAndUpdateRunnableModule();
+        CheckForPlayerJump();
         Move();
-    }
-
-    void CheckAndUpdateRunnableModule()
-    {
-        while (curRunnableModule.next && levelMusicSource.time > curRunnableModule.moveToNextTime)
-        {
-            curRunnableModule.OnPlayerLeft();
-            curRunnableModule = curRunnableModule.next;
-        }
     }
 
     void Move()
@@ -62,6 +56,84 @@ public class PlayerMovementController : MonoBehaviour
             var newScale = transform.localScale;
             newScale.x = Mathf.Abs(newScale.x) * (curRunnableModule.runXLocalPos < 0 ? -1 : 1);
             transform.localScale = newScale;
+        }
+    }
+
+    public void JumpToNextRunnableModule()
+    {
+        if (curRunnableModule.next)
+        {
+            curRunnableModule.OnPlayerLeft();
+            curRunnableModule = curRunnableModule.next;
+            curRunnableModule.Ready();
+        }
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        var playerInput = new PlayerInput
+        {
+            jumpLeft = Input.GetKeyDown(KeyCode.LeftArrow),
+            jumpRight = Input.GetKeyDown(KeyCode.RightArrow)
+        };
+
+        return playerInput;
+    }
+
+    void CheckAndUpdateRunnableModule()
+    {
+        while (curRunnableModule.next && levelMusicSource.time > (curRunnableModule.moveToNextTime + playerModel.maxAcceptableTimeThreshold))
+        {
+            JumpToNextRunnableModule();
+        }
+    }
+
+    void CheckForPlayerJump()
+    {
+        var playerInput = GetPlayerInput();
+
+        if (playerInput.isJumping)
+        {
+            bool jumpIsValid = false;
+            if (transform.position.x > curRunnableModule.runXPos && playerInput.jumpRight)
+            {
+                jumpIsValid = true;
+            }
+            else if (transform.position.x < curRunnableModule.runXPos &&
+                     playerInput.jumpLeft)
+            {
+                jumpIsValid = true;
+            }
+
+            if (jumpIsValid)
+            {
+                var jumpTimeOffset = Mathf.Abs(curRunnableModule.moveToNextTime - levelMusicSource.time);
+                
+                print("Jump Time Offset: " + jumpTimeOffset);
+
+                if (jumpTimeOffset <= playerModel.perfectTimeThreshold)
+                {
+                    curRunnableModule.Perfect();
+                    playerModel.JumpAttempted(PlayerModel.maxScore);
+                }
+                else if (jumpTimeOffset <= playerModel.maxAcceptableTimeThreshold)
+                {
+                    curRunnableModule.Acceptable();
+                    playerModel.JumpAttempted(HelperUtilities.Remap(jumpTimeOffset, playerModel.perfectTimeThreshold,
+                        playerModel.maxAcceptableTimeThreshold, PlayerModel.maxScore,
+                        playerModel.maxAcceptableTimeScore));
+                }
+                else
+                {
+                    curRunnableModule.Fail();
+                    playerModel.InvalidJumpAttempted();
+                }
+            }
+            else
+            {
+                curRunnableModule.Fail();
+                playerModel.InvalidJumpAttempted();
+            }
         }
     }
 }

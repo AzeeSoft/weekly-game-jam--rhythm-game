@@ -45,21 +45,28 @@ Material:
     - Boolean_54E208D0: 0
     - Boolean_E8CEE5F2: 0
     - Boolean_EEEB142F: 1
+    - Vector1_4C7F31C3: 0
     - Vector1_87618C81: 2
     - Vector1_B255FA47: 0
+    - Vector1_C1D17716: 0.01
     - Vector1_DA783A9F: 0.75
     - _disintegrationHeight: 2
     - _disintegrationOffset: 2
     - _disintegrationStartOffset: 1.5
     - _edgeWidth: 1
+    - _perfectTimeIndicatorHeight: 0.01
     m_Colors:
     - Color_3C122635: {r: 0, g: 0, b: 0, a: 0}
     - Color_4B3737CE: {r: 0, g: 0, b: 0, a: 0}
+    - Color_AF83E6A5: {r: 0.24528295, g: 0.24528295, b: 0.24528295, a: 1}
+    - Color_BD1A623D: {r: 1, g: 1, b: 1, a: 1}
     - Vector3_D77CEB0D: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainTex: {r: 0.75471693, g: 0.75471693, b: 0.75471693, a: 1}
     - _disintegrationColor: {r: 0.1981132, g: 0.064825006, b: 0.032707363, a: 1}
     - _edgeColor: {r: 0, g: 0.033018887, b: 0.033018887, a: 1}
-    - _localScale: {r: 1, g: 1, b: 1, a: 0}
+    - _localScale: {r: -2, g: 4.7, b: 1, a: 0}
+    - _perfectAreaColor: {r: 1, g: 1, b: 1, a: 1}
     - _playerPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _topPosition: {r: 0, g: 1.27, b: 0, a: 0}

@@ -26,7 +26,28 @@ public class RunnableModule : MonoBehaviour
     {
         if (!jumpAttempted)
         {
+            Fail();
             PlayerModel.Instance.JumpMissed();
         }
+    }
+
+    public virtual void Ready()
+    {
+
+    }
+
+    public virtual void Perfect()
+    {
+
+    }
+
+    public virtual void Acceptable()
+    {
+
+    }
+
+    public virtual void Fail()
+    {
+
     }
 }

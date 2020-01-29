@@ -21,13 +21,15 @@ public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
 
     [Header("Accuracy Config")] public float perfectTimeThreshold;
     public float maxAcceptableTimeThreshold;
-    [Range(0, 1)] public float maxAcceptableTimeScoreMultiplier = 0.5f;
+    [Range(0, 1)] public float maxAcceptableTimeScoreMultiplier = 0.8f;
+    [Range(0, 1)] public float missedBeatScoreMultiplier = 0f;
+    [Range(0, 1)] public float invalidJumpScoreMultiplier = 0.3f;
 
     public float maxAcceptableTimeScore => maxScore * maxAcceptableTimeScoreMultiplier;
 
     public const float maxScore = 1f;
 
-    private float totalScore = 0;
+    public float totalScore = 0;
     private int scoresCount = 0;
 
     new void Awake()
@@ -45,93 +47,28 @@ public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
     // Update is called once per frame
     void Update()
     {
-        UpdateGlobalShaderPlayerPositionProp();
-        CheckForPlayerJump();
-    }
-
-    public PlayerInput GetPlayerInput()
-    {
-        var playerInput = new PlayerInput
-        {
-            jumpLeft = Input.GetKeyDown(KeyCode.LeftArrow),
-            jumpRight = Input.GetKeyDown(KeyCode.RightArrow)
-        };
-
-        return playerInput;
     }
 
     public void JumpMissed()
     {
-        JumpAttempted(0);
+        JumpAttempted(maxScore * missedBeatScoreMultiplier, false);
     }
 
     public void InvalidJumpAttempted()
     {
-        JumpAttempted(0);
+        JumpAttempted(maxScore * invalidJumpScoreMultiplier, false);
     }
 
-    public void JumpAttempted(float score)
+    public void JumpAttempted(float score, bool jump = true)
     {
+        playerMovementController.curRunnableModule.jumpAttempted = true;
+
         totalScore += score;
         scoresCount++;
-    }
 
-    void CheckForPlayerJump()
-    {
-        var playerInput = GetPlayerInput();
-
-        if (playerInput.isJumping)
+        if (jump)
         {
-            if (!playerMovementController.curRunnableModule.jumpAttempted)
-            {
-                bool jumpIsValid = false;
-                if (transform.position.x > playerMovementController.curRunnableModule.runXPos && playerInput.jumpRight)
-                {
-                    jumpIsValid = true;
-                }
-                else if (transform.position.x > playerMovementController.curRunnableModule.runXPos &&
-                         playerInput.jumpLeft)
-                {
-                    jumpIsValid = true;
-                }
-
-                if (jumpIsValid)
-                {
-                    var jumpTimeOffset = playerMovementController.curRunnableModule.moveToNextTime - levelMusicSource.time;
-                    jumpTimeOffset = Mathf.Max(0, jumpTimeOffset);
-
-                    print("Jump Time Offset: " + jumpTimeOffset);
-
-                    if (jumpTimeOffset <= perfectTimeThreshold)
-                    {
-                        JumpAttempted(maxScore);
-                    }
-                    else if (jumpTimeOffset <= maxAcceptableTimeThreshold)
-                    {
-                        JumpAttempted(HelperUtilities.Remap(jumpTimeOffset, perfectTimeThreshold,
-                            maxAcceptableTimeThreshold, maxScore, maxAcceptableTimeScore));
-                    }
-                    else
-                    {
-                        InvalidJumpAttempted();
-                    }
-
-                    playerMovementController.curRunnableModule.jumpAttempted = true;
-                }
-                else
-                {
-                    InvalidJumpAttempted();
-                }
-            }
-            else
-            {
-                InvalidJumpAttempted();
-            }
+            playerMovementController.JumpToNextRunnableModule();
         }
-    }
-
-    public void UpdateGlobalShaderPlayerPositionProp()
-    {
-        Shader.SetGlobalVector("_playerPosition", transform.position);
     }
 }

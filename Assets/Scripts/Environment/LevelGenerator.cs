@@ -39,7 +39,6 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     void Update()
     {
         AlignContainers();
-        playerModel.UpdateGlobalShaderPlayerPositionProp();
     }
 
     void AlignContainers()
@@ -115,7 +114,8 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
             wallModule.transform.localPosition = newPos;
 
             var newScale = wallModule.transform.localScale;
-            newScale.y = beatYPos - spawnYPos;
+            newScale.x = Mathf.Abs(newScale.x) * (curContainer == leftContainer ? 1 : -1);
+            newScale.y = (beatYPos - spawnYPos) + (playerModel.maxAcceptableTimeThreshold * yMultiplier);
             wallModule.transform.localScale = newScale;
 
             wallModule.moveToNextTime = beats[i];

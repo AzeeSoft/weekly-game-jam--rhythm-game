@@ -4845,6 +4845,7 @@ GameObject:
   - component: {fileID: 3980170566116989344}
   - component: {fileID: 4660411705002182162}
   - component: {fileID: 5116638937204967014}
+  - component: {fileID: 5621243486198004015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4909,9 +4910,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4
-  perfectTimeThreshold: 0.2
-  maxAcceptableTimeThreshold: 0.5
+  perfectTimeThreshold: 0.075
+  maxAcceptableTimeThreshold: 0.25
   maxAcceptableTimeScoreMultiplier: 0.5
+  totalScore: 0
 --- !u!114 &5116638937204967014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4927,6 +4929,19 @@ MonoBehaviour:
   lerpSpeed: 20
   reachDistance: 1
   feetRef: {fileID: 5017346732768098161}
+--- !u!114 &5621243486198004015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452215106835330769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c69d97a8690db4ebd671f125693729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerModel: {fileID: 4660411705002182162}
 --- !u!1 &5452215107040399632
 GameObject:
   m_ObjectHideFlags: 0

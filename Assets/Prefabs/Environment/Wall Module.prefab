@@ -91,6 +91,8 @@ GameObject:
   - component: {fileID: 334083819049993344}
   - component: {fileID: 8865098985266486507}
   - component: {fileID: 4677303388647817984}
+  - component: {fileID: 187800969916470588}
+  - component: {fileID: 512610221647919864}
   m_Layer: 0
   m_Name: Wall Module
   m_TagString: Untagged
@@ -155,4 +157,37 @@ MonoBehaviour:
   runXLocalPos: 0
   moveToNextTime: 0
   jumpAttempted: 0
+  wallShaderHelper: {fileID: 187800969916470588}
+--- !u!114 &187800969916470588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334083819049993346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed8a12367072ca4db289ae866c7229a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   wallRenderer: {fileID: 334083818715425215}
+  currentlyEditing: 0
+--- !u!95 &512610221647919864
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334083819049993346}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3bc6fc30593638d41b7dfb52f209e019, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
