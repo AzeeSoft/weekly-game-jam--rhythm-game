@@ -14307,6 +14307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2141476122512565547, guid: 7a762a437d58aff44bebae12307f4c5d,
+        type: 3}
+      propertyPath: m_ScreenY
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2398159792590214822, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -14345,7 +14350,7 @@ PrefabInstance:
     - target: {fileID: 6034163781056138931, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.999999
+      value: 3.999999
       objectReference: {fileID: 0}
     - target: {fileID: 6034163781056138931, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
@@ -14425,7 +14430,7 @@ PrefabInstance:
     - target: {fileID: 6034163782382749375, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.999999
+      value: 3.999999
       objectReference: {fileID: 0}
     - target: {fileID: 6034163782382749375, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
