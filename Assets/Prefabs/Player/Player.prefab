@@ -4911,8 +4911,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4
   perfectTimeThreshold: 0.075
-  maxAcceptableTimeThreshold: 0.25
-  maxAcceptableTimeScoreMultiplier: 0.5
+  maxAcceptableTimeThreshold: 0.15
+  maxAcceptableTimeScoreMultiplier: 0.8
+  missedBeatScoreMultiplier: 0
+  invalidJumpScoreMultiplier: 0.3
   totalScore: 0
 --- !u!114 &5116638937204967014
 MonoBehaviour:
@@ -5164,7 +5166,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.039215688, g: 0.039215688, b: 0.13725491, a: 0.39215687}
+      key0: {r: 0.009122461, g: 0.009122461, b: 0.047169805, a: 0.39215687}
       key1: {r: 0.039215688, g: 0.039215688, b: 0.13725491, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

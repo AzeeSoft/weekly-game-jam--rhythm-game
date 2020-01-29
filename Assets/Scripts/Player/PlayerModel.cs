@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Lean.Touch;
 using UnityEngine;
 
 public class PlayerInput
@@ -70,5 +71,32 @@ public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
         {
             playerMovementController.JumpToNextRunnableModule();
         }
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        var playerInput = new PlayerInput
+        {
+            jumpLeft = Input.GetKeyDown(KeyCode.LeftArrow),
+            jumpRight = Input.GetKeyDown(KeyCode.RightArrow)
+        };
+
+        foreach (var leanFinger in LeanTouch.Fingers)
+        {
+            if (leanFinger.Down && !leanFinger.StartedOverGui)
+            {
+                var normalizedScreenX = leanFinger.ScreenPosition.x / Screen.currentResolution.width;
+                if (normalizedScreenX <= 0.5)
+                {
+                    playerInput.jumpLeft = true;
+                }
+                else
+                {
+                    playerInput.jumpRight = true;
+                }
+            }
+        }
+
+        return playerInput;
     }
 }

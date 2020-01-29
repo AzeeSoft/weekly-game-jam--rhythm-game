@@ -69,17 +69,6 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    public PlayerInput GetPlayerInput()
-    {
-        var playerInput = new PlayerInput
-        {
-            jumpLeft = Input.GetKeyDown(KeyCode.LeftArrow),
-            jumpRight = Input.GetKeyDown(KeyCode.RightArrow)
-        };
-
-        return playerInput;
-    }
-
     void CheckAndUpdateRunnableModule()
     {
         while (curRunnableModule.next && levelMusicSource.time > (curRunnableModule.moveToNextTime + playerModel.maxAcceptableTimeThreshold))
@@ -90,7 +79,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void CheckForPlayerJump()
     {
-        var playerInput = GetPlayerInput();
+        var playerInput = playerModel.GetPlayerInput();
 
         if (playerInput.isJumping)
         {
