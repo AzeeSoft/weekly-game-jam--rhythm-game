@@ -41,4 +41,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/SlowMotion.unity
     guid: d0719cdb7cb25c24782e343d20a5a3eb
+  - enabled: 1
+    path: Assets/Scenes/Levels/November.unity
+    guid: c68b06424077dda488b53dbec144d32a
+  - enabled: 1
+    path: Assets/Scenes/Levels/Delamine.unity
+    guid: 9d0ffa7f6e7552646a331520dc569373
+  - enabled: 1
+    path: Assets/Scenes/Levels/HighRide.unity
+    guid: 24421a4530f33644e831435115bad2d9
+  - enabled: 1
+    path: Assets/Scenes/Levels/SlimHeart.unity
+    guid: 54e8a806efcf72d46a71a1cfeb4a347b
+  - enabled: 1
+    path: Assets/Scenes/Levels/Vienna.unity
+    guid: fe8c0647f3ac6b840a9fdc43d9081837
+  - enabled: 1
+    path: Assets/Scenes/Levels/Christmas.unity
+    guid: 714962e9735467f48aa561ecbd353862
+  - enabled: 1
+    path: Assets/Scenes/Levels/DayToNight.unity
+    guid: 8af33c6fdb893f040a88ae8af328f804
+  - enabled: 1
+    path: Assets/Scenes/Levels/Love.unity
+    guid: 0a2b1367d4cf76140bd212b0e3feaf8d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Awakening.unity
+    guid: cc97279bf28e0de4e9c7ebaea6a3e231
+  - enabled: 1
+    path: Assets/Scenes/Levels/Enigmatic.unity
+    guid: 342597d7366bdb44abc42f7c6e541aa4
+  - enabled: 1
+    path: Assets/Scenes/Levels/Memories.unity
+    guid: b94cd137a59e4734c841af6a8405bbcb
   m_configObjects: {}

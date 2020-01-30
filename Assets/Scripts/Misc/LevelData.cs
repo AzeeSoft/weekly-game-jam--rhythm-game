@@ -9,4 +9,5 @@ public class LevelData : ScriptableObject
 
     public string levelKey;
     public string sceneName;
+    public AudioClip audioClip;
 }

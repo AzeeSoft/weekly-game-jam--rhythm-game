@@ -8,6 +8,7 @@ public class LevelButton : MonoBehaviour
 {
     public TextMeshProUGUI title;
     public TextMeshProUGUI bestAccuracyText;
+    public TextMeshProUGUI durationText;
 
     private LevelData levelData;
     private Button button;
@@ -40,6 +41,12 @@ public class LevelButton : MonoBehaviour
         {
             bestAccuracyText.text = "";
         }
+
+        float duration = levelData.audioClip.length;
+        int mins = (int)(duration / 60);
+        int secs = (int)(duration % 60);
+
+        durationText.text = $"{mins:#0}:{secs:00}";
 
         this.levelData = levelData;
     }
