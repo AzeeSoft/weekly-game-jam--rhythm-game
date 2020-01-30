@@ -27,6 +27,8 @@ public class MainMenu : SingletonMonoBehaviour<MainMenu>
         {
             DoorUI.Instance.HideDividers(0);
         }
+
+        SceneTransitionHelper.Instance?.Destroy();
     }
 
     // Start is called before the first frame update

@@ -40,6 +40,6 @@ public class SceneTransitionHelper : SingletonMonoBehaviour<SceneTransitionHelpe
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 }
