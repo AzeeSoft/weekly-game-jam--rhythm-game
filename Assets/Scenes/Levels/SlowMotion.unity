@@ -13341,6 +13341,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3112992890017846127, guid: 7a762a437d58aff44bebae12307f4c5d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -47
+      objectReference: {fileID: 0}
     - target: {fileID: 3175944423539592823, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -13421,6 +13426,12 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4766194166033673383, guid: 7a762a437d58aff44bebae12307f4c5d,
+        type: 3}
+      propertyPath: levelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8014c0fd9a1ef2443a0e2d719d7c1660,
+        type: 2}
     - target: {fileID: 5269655048059584873, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_AnchorMin.y

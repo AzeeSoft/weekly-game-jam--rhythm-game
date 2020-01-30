@@ -47,6 +47,11 @@ public class MainMenu : SingletonMonoBehaviour<MainMenu>
 
         foreach (var levelData in levels)
         {
+            if (levelData == null)
+            {
+                continue;
+            }
+
             var levelButton = Instantiate(levelButtonPrefab, levelsContainer).GetComponent<LevelButton>();
             levelButton.Init(levelData);
         }
