@@ -74,6 +74,7 @@ public class MainMenu : SingletonMonoBehaviour<MainMenu>
 
     public void Exit()
     {
+        mainMenuTimeline.SetActive(false);
         DoorUI.Instance.CloseDoors(-1, () =>
         {
             ScreenFader.Instance.FadeOut(-1, () =>
