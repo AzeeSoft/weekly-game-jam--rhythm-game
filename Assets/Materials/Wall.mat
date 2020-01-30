@@ -50,9 +50,9 @@ Material:
     - Vector1_B255FA47: 0
     - Vector1_C1D17716: 0.01
     - Vector1_DA783A9F: 0.75
-    - _disintegrationHeight: 2.5
+    - _disintegrationHeight: 4
     - _disintegrationOffset: 2
-    - _disintegrationStartOffset: 2.5
+    - _disintegrationStartOffset: 3
     - _edgeWidth: 1
     - _perfectTimeIndicatorHeight: 0.01
     m_Colors:
