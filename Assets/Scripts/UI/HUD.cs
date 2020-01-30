@@ -16,6 +16,7 @@ public class HUD : SingletonMonoBehaviour<HUD>
     public GameObject endScreen;
 
     public float screenTransitionDuration = 0.3f;
+    public float closeDoorsDuration = 1f;
 
     private bool wasMusicPlaying = false;
 
@@ -51,12 +52,12 @@ public class HUD : SingletonMonoBehaviour<HUD>
 
     public void PlayAgain()
     {
-        ScreenFader.Instance.FadeOut(-1, () => { LevelManager.Instance.RestartCurrentScene(); });
+        DoorUI.Instance.CloseDoors(closeDoorsDuration, () => { LevelManager.Instance.RestartCurrentScene(); });
     }
 
     public void GoToMainMenu()
     {
-        ScreenFader.Instance.FadeOut(-1, () => { LevelManager.Instance.GoToMainMenu(); });
+        DoorUI.Instance.CloseDoors(closeDoorsDuration, () => { LevelManager.Instance.GoToMainMenu(); });
     }
 
     public void Pause()

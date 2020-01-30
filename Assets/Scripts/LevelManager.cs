@@ -47,6 +47,9 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
 
     public void GoToMainMenu()
     {
+        var sceneTransitionHelper = SceneTransitionHelper.Create();
+        sceneTransitionHelper.data["dontHideDivider"] = true;
+
         SceneManager.LoadScene(mainMenuSceneName);
     }
 }

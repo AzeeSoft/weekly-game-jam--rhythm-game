@@ -9,20 +9,22 @@ public class ScreenFader : SingletonMonoBehaviour<ScreenFader>
 {
     public Image fadeImage;
 
-    public bool fadeInOnAwake = true;
+    public bool fadeInOnStart = true;
 
     public float defaultFadeDuration = 3f;
 
     new void Awake()
     {
         base.Awake();
-
-        FadeIn(defaultFadeDuration);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        if (fadeInOnStart)
+        {
+            FadeIn(defaultFadeDuration);
+        }
     }
 
     // Update is called once per frame
