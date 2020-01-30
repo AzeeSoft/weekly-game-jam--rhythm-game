@@ -48,13 +48,16 @@ public class MainMenu : MonoBehaviour
 
     public void Exit()
     {
-        ScreenFader.Instance.FadeOut(-1, () =>
+        DoorUI.Instance.CloseDoors(-1, () =>
         {
+            ScreenFader.Instance.FadeOut(-1, () =>
+            {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+                UnityEditor.EditorApplication.isPlaying = false;
 #endif
 
-            Application.Quit();
+                Application.Quit();
+            });
         });
     }
 }

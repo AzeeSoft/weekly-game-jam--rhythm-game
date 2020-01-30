@@ -14487,7 +14487,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: f55ee105c3623ff41aae64b8336473a6, type: 3}
+      objectReference: {fileID: 8300000, guid: 35910672bfa158e4fba739b49fbbf4bb, type: 3}
     - target: {fileID: 5644186135114877419, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -14667,7 +14667,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onsetData
       value: 
-      objectReference: {fileID: 4900000, guid: 2937c263982a1424da55da3c5aadda29, type: 3}
+      objectReference: {fileID: 4900000, guid: 91df1decc7fbf284d9ee0656bf6585f9, type: 3}
     - target: {fileID: 7486010151961708370, guid: 7a762a437d58aff44bebae12307f4c5d,
         type: 3}
       propertyPath: m_LocalPosition.x

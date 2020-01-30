@@ -581,11 +581,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.999999
       objectReference: {fileID: 0}
-    - target: {fileID: 2549494666440496267, guid: 24e50b30e17014944bf3d55095fd0f9b,
-        type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2549494666739323810, guid: 24e50b30e17014944bf3d55095fd0f9b,
         type: 3}
       propertyPath: m_RootOrder
