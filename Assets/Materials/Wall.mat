@@ -50,7 +50,7 @@ Material:
     - Vector1_B255FA47: 0
     - Vector1_C1D17716: 0.01
     - Vector1_DA783A9F: 0.75
-    - _disintegrationHeight: 2
+    - _disintegrationHeight: 2.5
     - _disintegrationOffset: 2
     - _disintegrationStartOffset: 2.5
     - _edgeWidth: 1

@@ -10,8 +10,10 @@ public class HUD : SingletonMonoBehaviour<HUD>
     public bool isPaused => Time.timeScale <= 0;
 
 
+    public TextMeshProUGUI timeLeftText;
     public TextMeshProUGUI accuracyText;
     public TextMeshProUGUI endAccuracyText;
+    public TextMeshProUGUI endBestAccuracyText;
     public GameObject pauseScreen;
     public GameObject endScreen;
 
@@ -29,6 +31,7 @@ public class HUD : SingletonMonoBehaviour<HUD>
     void Update()
     {
         UpdateAccuracy();
+        UpdateTimeLeft();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -47,6 +50,16 @@ public class HUD : SingletonMonoBehaviour<HUD>
     {
         var accuracyRemapped = HelperUtilities.Remap(PlayerModel.Instance.accuracy, 0, PlayerModel.maxScore, 0, 100f);
         accuracyText.text = $"Accuracy: {accuracyRemapped:##0.##}%";
+    }
+
+    void UpdateTimeLeft()
+    {
+        float timeLeft = LevelManager.Instance.levelMusicSource.clip.length -
+                         LevelManager.Instance.levelMusicSource.time;
+        int mins = (int) (timeLeft / 60);
+        int secs = (int) (timeLeft % 60);
+
+        timeLeftText.text = $"{mins:#0}:{secs:00}";
     }
 
     public void PlayAgain()
@@ -93,6 +106,19 @@ public class HUD : SingletonMonoBehaviour<HUD>
             var accuracyRemapped =
                 HelperUtilities.Remap(PlayerModel.Instance.accuracy, 0, PlayerModel.maxScore, 0, 100f);
             endAccuracyText.text = $"{accuracyRemapped:##0.##}%";
+
+            float bestAccuracy = PlayerModel.Instance.accuracy;
+            if (LevelManager.Instance.levelData)
+            {
+                HighscoreManagerScript.Instance.UpdateBestScore(LevelManager.Instance.levelData.levelKey,
+                    PlayerModel.Instance.accuracy);
+                bestAccuracy = HighscoreManagerScript.Instance.GetBestScore(LevelManager.Instance.levelData.levelKey);
+            }
+
+            var bestAccuracyRemapped =
+                HelperUtilities.Remap(bestAccuracy, 0, PlayerModel.maxScore, 0, 100f);
+            endBestAccuracyText.text = $"{bestAccuracyRemapped:##0.##}%";
+
             ShowScreen(endScreen);
         }, delay);
     }

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : SingletonMonoBehaviour<LevelManager>
 {
+    public LevelData levelData;
     public AudioSource levelMusicSource;
     public string mainMenuSceneName = "MainMenu";
     public CinemachineBrain brain;

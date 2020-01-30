@@ -184,4 +184,28 @@ public class HighscoreManagerScript : SingletonMonoBehaviour<HighscoreManagerScr
         string json = JsonUtility.ToJson(jsonData);
         PlayerPrefs.SetString(highscoreKey, json);
     }
+
+    string GetLevelHighscoreKey(string levelKey)
+    {
+        return $"{highscoreKey}_{levelKey}";
+    }
+
+    public float GetBestScore(string levelKey)
+    {
+        return PlayerPrefs.GetFloat(GetLevelHighscoreKey(levelKey), 0);
+    }
+
+    public bool UpdateBestScore(string levelKey, float score)
+    {
+        float curBestScore = GetBestScore(levelKey);
+        if (score > curBestScore)
+        {
+            PlayerPrefs.SetFloat(GetLevelHighscoreKey(levelKey), score);
+            PlayerPrefs.Save();
+
+            return true;
+        }
+
+        return false;
+    }
 }
