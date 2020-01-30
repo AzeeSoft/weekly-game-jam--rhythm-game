@@ -80,7 +80,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void CheckAndUpdateRunnableModule()
     {
-        bool check = curRunnableModule.next;
+        bool check = curRunnableModule.next || curRunnableModule.autoRun;
         while (check)
         {
             check = false;

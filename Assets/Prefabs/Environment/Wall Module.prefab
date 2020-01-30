@@ -157,6 +157,9 @@ MonoBehaviour:
   runXLocalPos: 0
   moveToNextTime: 0
   jumpAttempted: 0
+  autoRun: 0
+  playMusicOnLeave: 0
+  endLevelOnLeave: 0
   wallShaderHelper: {fileID: 187800969916470588}
 --- !u!114 &187800969916470588
 MonoBehaviour:

@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class WallModule : RunnableModule
 {
-    public WallShaderHelper wallShaderHelper { get; private set; }
+    public WallShaderHelper wallShaderHelper;
 
     private Animator animator;
 
     void Awake()
     {
-        wallShaderHelper = GetComponent<WallShaderHelper>();
         animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        if (autoRun)
+        {
+            HidePerfectTimeIndicator();
+        }
     }
 
     // Update is called once per frame
@@ -25,10 +28,19 @@ public class WallModule : RunnableModule
         
     }
 
+    void HidePerfectTimeIndicator()
+    {
+        animator.SetBool("HidePerfectTimeIndicator", true);
+    }
+
     public override void Ready()
     {
         base.Ready();
-        animator.SetBool("Ready", true);
+
+        if (!autoRun)
+        {
+            animator.SetBool("Ready", true);
+        }
     }
 
     public override void Perfect()

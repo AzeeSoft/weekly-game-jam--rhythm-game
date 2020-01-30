@@ -26,4 +26,9 @@ public class WallShaderHelper : MonoBehaviour
             material.SetVector("_topPosition", wallRenderer.transform.TransformPoint(new Vector3(0, 0.5f, 0)));
         }
     }
+
+    public void HidePerfectTimeIndicator()
+    {
+        wallRenderer.material.SetFloat("_perfectTimeIndicatorHeight", 0);
+    }
 }

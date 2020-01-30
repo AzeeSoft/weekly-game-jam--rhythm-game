@@ -25,7 +25,8 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     [Header("Config")] public float minOnsetInterval;
     public float startRunDuration = 3f;
     public float endScreenDelay = 3f;
-    public float endRunDuration = 6f;
+    public float endScreenSecondaryDelay = 2f;
+    public float endRunDuration = 10f;
 
     [SerializeField] [Button("Generate Level", "GenerateLevel")]
     private bool btn_GenerateLevel;
@@ -72,15 +73,16 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
 
         var beats = GameTools.GetOnsets(onsetData.text).Select((onsetInfo) => onsetInfo.time).ToList();
 
-        Transform curContainer = leftContainer;
+        Transform curContainer = rightContainer;
         RunnableModule lastRunnableModule = null;
 
         var startingWallModule = SpawnWall(curContainer, -startRunDuration * yMultiplier, 0);
         startingWallModule.autoRun = true;
         startingWallModule.playMusicOnLeave = true;
+
         lastRunnableModule = startingWallModule;
 
-        curContainer = curContainer == leftContainer ? rightContainer : leftContainer;
+        //curContainer = curContainer == leftContainer ? rightContainer : leftContainer;
         int lastBeatSpawned = -1;
         for (int i = 0; i < beats.Count; i++)
         {
@@ -118,9 +120,10 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
 
         var endingWallModule = SpawnWall(curContainer, endSpawnYPos, endSpawnYPos + endRunDuration * yMultiplier);
         endingWallModule.autoRun = true;
-        endingWallModule.endLevelOnLeave = true;
+
         if (lastRunnableModule)
         {
+            lastRunnableModule.endLevelOnLeave = true;
             lastRunnableModule.next = endingWallModule;
         }
     }

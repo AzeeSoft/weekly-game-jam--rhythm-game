@@ -50,7 +50,11 @@ public class RunnableModule : MonoBehaviour
 
             if (endLevelOnLeave)
             {
-                // TODO: End Level Sequence
+                this.WaitAndExecute(() =>
+                {
+                    LevelManager.Instance.brain.ActiveVirtualCamera.Follow = null;
+                    HUD.Instance.ShowEndScreen(LevelGenerator.Instance.endScreenSecondaryDelay);
+                }, LevelGenerator.Instance.endScreenDelay);
             }
 
             playerLeft = true;

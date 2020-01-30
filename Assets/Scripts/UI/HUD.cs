@@ -23,7 +23,6 @@ public class HUD : SingletonMonoBehaviour<HUD>
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -89,7 +88,11 @@ public class HUD : SingletonMonoBehaviour<HUD>
     {
         this.WaitAndExecute(() =>
         {
-            endAccuracyText.text = accuracyText.text;
+            Time.timeScale = 0;
+
+            var accuracyRemapped =
+                HelperUtilities.Remap(PlayerModel.Instance.accuracy, 0, PlayerModel.maxScore, 0, 100f);
+            endAccuracyText.text = $"{accuracyRemapped:##0.##}%";
             ShowScreen(endScreen);
         }, delay);
     }
