@@ -5,15 +5,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : SingletonMonoBehaviour<MainMenu>
 {
     public MainMenuPage mainPage;
     public GameObject mainMenuTimeline;
 
-    void Awake()
+    public Transform levelsContainer;
+    public GameObject levelButtonPrefab;
+    public List<LevelData> levels;
+
+    new void Awake()
     {
+        base.Awake();
+
         Time.timeScale = 1;
         mainPage.gameObject.SetActive(false);
+
+        RefreshLevels();
 
         if (!SceneTransitionHelper.Instance || !SceneTransitionHelper.Instance.data.ContainsKey("dontHideDivider"))
         {
@@ -29,6 +37,17 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    void RefreshLevels()
+    {
+        levelsContainer.DestroyAllChildren();
+
+        foreach (var levelData in levels)
+        {
+            var levelButton = Instantiate(levelButtonPrefab, levelsContainer).GetComponent<LevelButton>();
+            levelButton.Init(levelData);
+        }
     }
 
     public void ShowGraphicObject(GameObject obj, float duration)
