@@ -16,15 +16,26 @@ public class HUD : SingletonMonoBehaviour<HUD>
     public TextMeshProUGUI endBestAccuracyText;
     public GameObject pauseScreen;
     public GameObject endScreen;
+    public GameObject pcInstructions;
+    public GameObject mobileInstructions;
 
+    public float instructionDuration = 5f;
     public float screenTransitionDuration = 0.3f;
     public float closeDoorsDuration = 1f;
 
     private bool wasMusicPlaying = false;
 
+    private GameObject instructions => Application.isMobilePlatform ? mobileInstructions : pcInstructions;
+
     // Start is called before the first frame update
     void Start()
     {
+        ShowScreen(instructions);
+        this.WaitAndExecute(() =>
+        {
+            HideScreen(instructions);
+        }, instructionDuration);
+
     }
 
     // Update is called once per frame

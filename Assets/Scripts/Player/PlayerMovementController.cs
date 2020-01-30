@@ -25,6 +25,12 @@ public class PlayerMovementController : MonoBehaviour
         curRunnableModule = LevelManager.Instance.allRunnableModules[0];
         curRunnableModule.Ready();
 
+        var adjustedPos = transform.position;
+        adjustedPos.y = curRunnableModule.transform.position.y;
+        transform.position = adjustedPos;
+
+        playerModel.trailRenderer.Clear();
+
         print(curRunnableModule);
         print(curRunnableModule.gameObject);
     }

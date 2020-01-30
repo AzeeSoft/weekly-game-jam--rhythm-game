@@ -4909,6 +4909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca1d73f66e1d5a42bb3f0c787ef47f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailRenderer: {fileID: 7694079765404387225}
   playerSpeed: 4
   perfectTimeThreshold: 0.075
   maxAcceptableTimeThreshold: 0.15

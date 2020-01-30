@@ -54,7 +54,7 @@ MonoBehaviour:
   wallModulePrefab: {fileID: 334083819049993346, guid: 05be5e1e48a516c4faf6dcc05881404a,
     type: 3}
   minOnsetInterval: 0.2
-  startRunDuration: 3
+  startRunDuration: 6
   endScreenDelay: 3
   endScreenSecondaryDelay: 4
   endRunDuration: 20

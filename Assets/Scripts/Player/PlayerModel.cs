@@ -17,6 +17,7 @@ public class PlayerModel : SingletonMonoBehaviour<PlayerModel>
 
     private AudioSource levelMusicSource => LevelManager.Instance.levelMusicSource;
     public PlayerMovementController playerMovementController { get; private set; }
+    public TrailRenderer trailRenderer;
 
     public float playerSpeed = 1;
 
