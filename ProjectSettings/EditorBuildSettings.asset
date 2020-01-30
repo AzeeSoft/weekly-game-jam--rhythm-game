@@ -12,21 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Test/Azee/ProceduralLevelGenerationTest.unity
     guid: 8d77bacac232b324f98a48a388907d96
   - enabled: 1
-    path: Assets/Scenes/Levels/Dance.unity
-    guid: 1fcbec9c395d9ba4d83e91dc6d34745f
-  - enabled: 1
-    path: Assets/Scenes/Levels/Dreams.unity
-    guid: f5f66cb2c09062b4fb74199fca47fe5a
-  - enabled: 1
-    path: Assets/Scenes/Levels/Summer.unity
-    guid: 9b381f8057100ba428bc3ddf6e7838e0
-  - enabled: 1
-    path: Assets/Scenes/Levels/Moose.unity
-    guid: 0617f711894101146927691e8d5bc759
-  - enabled: 1
-    path: Assets/Scenes/Levels/Tomorrow.unity
-    guid: 00253281a5e019d4eb91c2352ba9afd4
-  - enabled: 1
     path: Assets/Scenes/Levels/Sweet.unity
     guid: 2b46be228350e2b4c82ae454790b5f5e
   - enabled: 1
@@ -36,35 +21,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/JazzPiano.unity
     guid: 7d522b8663329214e9bfb24c4a388818
   - enabled: 1
-    path: Assets/Scenes/Levels/PopDance.unity
-    guid: 26202b48963025a4fbce65b920341b60
-  - enabled: 1
     path: Assets/Scenes/Levels/SlowMotion.unity
     guid: d0719cdb7cb25c24782e343d20a5a3eb
   - enabled: 1
     path: Assets/Scenes/Levels/November.unity
     guid: c68b06424077dda488b53dbec144d32a
   - enabled: 1
-    path: Assets/Scenes/Levels/Delamine.unity
-    guid: 9d0ffa7f6e7552646a331520dc569373
-  - enabled: 1
-    path: Assets/Scenes/Levels/HighRide.unity
-    guid: 24421a4530f33644e831435115bad2d9
-  - enabled: 1
-    path: Assets/Scenes/Levels/SlimHeart.unity
-    guid: 54e8a806efcf72d46a71a1cfeb4a347b
-  - enabled: 1
-    path: Assets/Scenes/Levels/Vienna.unity
-    guid: fe8c0647f3ac6b840a9fdc43d9081837
-  - enabled: 1
     path: Assets/Scenes/Levels/Christmas.unity
     guid: 714962e9735467f48aa561ecbd353862
   - enabled: 1
     path: Assets/Scenes/Levels/DayToNight.unity
     guid: 8af33c6fdb893f040a88ae8af328f804
-  - enabled: 1
-    path: Assets/Scenes/Levels/Love.unity
-    guid: 0a2b1367d4cf76140bd212b0e3feaf8d
   - enabled: 1
     path: Assets/Scenes/Levels/Awakening.unity
     guid: cc97279bf28e0de4e9c7ebaea6a3e231
