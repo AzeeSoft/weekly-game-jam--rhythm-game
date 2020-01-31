@@ -8785,7 +8785,7 @@ ScriptedImporter:
     index: 13
   - go: {fileID: 1443185984768271840, guid: 464482b26bfe2a24c9fdb88317dbe51a, type: 3}
     index: 14
-  generateGOHierarchy: 1
+  generateGOHierarchy: 0
   textureAssetName: ninja Texture
   prefabAssetName: ninja Prefab
   spriteLibAssetName: ninja Sprite Lib
